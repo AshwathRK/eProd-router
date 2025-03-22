@@ -1,0 +1,492 @@
+:root {
+    --WHITE: white;
+    --MAIN_COLOR: #0d2137;
+}
+
+#root {
+    width: 100%;
+    height: 825px;
+    position: relative;
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1px; */
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+/* fonts */
+
+.gfs-didot-regular {
+    font-family: "GFS Didot", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+
+/* NAVBAR CSS */
+
+.navBar {
+    padding: 0 5vw;
+    height: 10%;
+    background-color: var(--MAIN_COLOR);
+    /* grid-column: span 5 / span 5; */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2;
+
+    .eProdLogo {
+        height: 4vw;
+    }
+
+    .addToCardButton {
+        border: none;
+        color: var(--WHITE);
+        cursor: pointer;
+        background-color: var(--MAIN_COLOR);
+        font-size: 1vw;
+
+        .addTocardimg {
+            filter: invert(100%) brightness(1000%) contrast(100%);
+            width: 2.5vw;
+            color: var(--WHITE);
+        }
+    }
+
+    .addToCardButton:hover {
+        opacity: 0.8;
+    }
+
+    .selectedProCount {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        left: 93.5vw;
+        top: 0.6vw;
+    }
+}
+
+
+/* FILTER BAR CSS */
+
+.filter-con {
+    height: 90.3%;
+    position: absolute;
+    top: 5.2vw;
+}
+
+.filterbar {
+    width: 20%;
+    height: 100%;
+    background-color: rgb(24, 72, 114);
+    grid-row: span 8 / span 8;
+    grid-row-start: 2;
+    /* position: fixed;
+    top: 4vw;
+    bottom: 0; */
+}
+
+.dropdown {
+    cursor: pointer;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+/* Closed State */
+.fill-down {
+    display: flex;
+    /* position: relative; */
+    padding-left: 1vw;
+    width: 100%;
+    height: 3vw;
+    align-items: center;
+    background-color: rgb(9, 50, 85);
+    transform: translateY(0);
+    transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.fill-down:hover {
+    background-color: rgb(5, 77, 141);
+}
+
+/* Expanded State */
+.fill-up {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 1vw;
+    width: 100%;
+    height: 10vw;
+    align-items: flex-start;
+    background-color: rgb(60, 78, 93);
+    transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Text Styles */
+.categoryBtn {
+    color: white;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+/* Arrow Styling */
+.downArrow,
+.upArrow {
+    width: 2vw;
+    filter: invert(100%) brightness(1000%) contrast(100%);
+    position: absolute;
+    left: 15vw;
+    top: 0.7vw;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show/Hide Arrows Based on State */
+.fill-down .upArrow {
+    display: none;
+}
+
+.fill-down .categoryCheckBox,
+.fill-down .categoryText {
+    display: none;
+}
+
+.fill-up .categoryCheckBox,
+.fill-up .categoryText {
+    display: block;
+}
+
+.categoryText {
+    font-size: 1vw;
+    color: white;
+}
+
+.fill-down .downArrow {
+    display: block;
+}
+
+.fill-up .downArrow {
+    display: none;
+}
+
+.fill-up .upArrow {
+    display: block;
+}
+
+
+/* MAIN PAGE CSS */
+
+.container {
+    width: 80%;
+    height: 100%;
+    padding-right: 0;
+    background-color: aliceblue;
+
+    .subDivs {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+
+        .insideDivs {
+            border-radius: 1vw;
+            margin-top: 1vw;
+            width: 100%;
+            height: 40%;
+            background-color: #d3e2f1;
+            border: 1px solid rgb(213, 231, 235);
+
+            .imageDiv {
+                width: 30%;
+                height: 100%;
+                background-color: #fefefe;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top-left-radius: 1vw;
+                border-bottom-left-radius: 1vw;
+
+                .images {
+                    width: 45%;
+                    height: auto;
+                }
+            }
+
+            .prodectInfo {
+                width: 55%;
+                max-height: 100%;
+
+                .Cat-C {
+
+                    .Cat-h,
+                    .Cat-t {
+                        color: #616161;
+                        font-size: 0.8vw;
+                    }
+                }
+
+                .prodDesc {
+                    font-size: 0.8vw;
+                    color: #616161;
+                }
+
+                .ratting {
+                    width: 18vw;
+
+                    .ratingStar {
+                        width: 3vw;
+                        padding: 0 3px;
+                        border-radius: 4px;
+                        height: 1.5vw;
+
+                        .imgStar {
+                            width: 1vw;
+                            height: 1vw;
+                        }
+
+                        .ratingTest {
+                            color: white;
+                        }
+                    }
+
+                }
+            }
+
+            .purchessDetails {
+                width: 15%;
+            }
+        }
+    }
+
+}
+
+.modelPopup-down {
+    display: none;
+}
+
+.modelPopup-open {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(211, 231, 255);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.addToCardPopup {
+    width: 50%;
+    height: 70%;
+    z-index: 23;
+    background-color: rgb(7, 54, 96);
+
+    .atcHedders {
+        width: 100%;
+        height: 10%;
+    }
+
+    .atcProdectContent {
+        width: 100%;
+        height: 90%;
+        background-color: rgb(81, 117, 148);
+        
+        .prodList {
+            width: 100%;
+            height: 80%;
+            overflow: hidden;
+            overflow-y: auto;
+            .prodect{
+                width: 100%;
+                height: 10vw;
+                border-radius: 10px;
+                border: 1px solid #616161;
+                background-color: rgb(211, 226, 241);
+                .images{
+                    z-index: 25;
+                }
+                .imageDiv{
+                    width: 30%;
+                    height: 100%;
+                    background-color: #ffffff;
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    box-sizing: border-box;
+                    .images{
+                        width: 60%;
+                        height: auto;
+                    }
+                }
+
+                .prodDetails{
+                    .atcCatagury{
+                        font-size: 0.9vw;
+                        padding-left: 15px;
+                        color:#616161;
+                    }
+                    .atcTitle{
+                        font-size: 1.2vw;
+                        padding-left: 15px;
+                    }
+
+                    .prodectCount{
+                        width: 70px;
+                        margin: 15px;
+                        background-color: #616161;
+                        justify-content: space-between;
+                        border-radius: 5px;
+                        
+                        .countDecress, .countIncress{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 100%;
+                            width: 33.33%;
+                        }
+                        .countDecress{
+                            border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                        }
+                        .countIncress{
+                            border-top-right-radius: 5px;
+                            border-bottom-right-radius: 5px;
+                        }
+                        .countDecress:hover, .countIncress:hover{
+                            opacity: 0.8;
+                            background-color:#9d9b9b ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
