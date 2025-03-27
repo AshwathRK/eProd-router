@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function AddToCardModel(probs) {
     const [addCount, setAddCount] = useState([]);
@@ -28,11 +28,14 @@ function AddToCardModel(probs) {
     //Set the add count
     useEffect(() => {
         setAddCount(probs.selectedProdectCount)
-            }, [probs]);
+    }, [probs]);
+
+
+    
 
 
     return (
-        <div className={probs.className}>
+        <div className='modelPopup-open'>
             <div className="addToCardPopup flex flex-col rounded-lg">
                 <div className="atcHedders w-full flex justify-between items-center px-5">
                     <h4 className="title text-white poppins-semibold">Add To Card</h4>
@@ -51,7 +54,7 @@ function AddToCardModel(probs) {
                                         <h3 className="atcTitle poppins-bold">{values.title}</h3>
                                         <div className="flex prodectCount items-center">
                                             <button onClick={() => decrease(values.id)} className="countDecress text-white">-</button>
-                                            <h6 className="count text-white">{addCount.map((countValue, contIndex)=> countValue.id===values.id? countValue.selectedCount:null)}</h6>
+                                            <h6 className="count text-white">{addCount.map((countValue, contIndex) => countValue.id === values.id ? countValue.selectedCount : null)}</h6>
                                             <button onClick={() => increase(values.id)} className="countIncress text-white">+</button>
                                         </div>
                                     </div>

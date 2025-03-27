@@ -2,6 +2,7 @@ import Buttons from "./Elements/Buttons";
 import Images from "./Elements/Images";
 import eProdLogo from '/public/eProd logo.png'
 import card from '/public/card.svg'
+import { Link } from "react-router-dom" 
 
 
 function NavigationBar(props) {
@@ -20,10 +21,12 @@ function NavigationBar(props) {
 
     return (
         <>
-            <nav className="navBar flex justify-between items-center">
+            <nav className="navBar flex justify-between items-center col-span-5">
                 <img src={eProdLogo} alt="eProd" className="eProdLogo" />
-                <Buttons onClick={props.onClick} className={pageButtons.ClassName} insideText={<><Images src={card} alt={cardImages.alt} className={cardImages.className}
-                />{pageButtons.insideText}</>} />
+                <Link to = "/addToCart">
+                    <Buttons className={pageButtons.ClassName} insideText={<><Images src={card} alt={cardImages.alt} className={cardImages.className}
+                    />{pageButtons.insideText}</>} />
+                </Link>
                 <div className="selectedProCount bg-red-600"><p className="text-white poppins-bold text-xs">{props.selectedProdectCount}</p></div>
             </nav>
         </>

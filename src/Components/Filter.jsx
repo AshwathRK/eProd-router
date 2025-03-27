@@ -4,6 +4,7 @@ import  {AppContext}  from "../App";
 
 
 function Filters(props) {
+    
     const [drag, setDrag] = useState("fill-down");
     const [data, setData] = useState([])
     const [responceCategory, setResponceCategory] = useState([])
@@ -39,7 +40,7 @@ function Filters(props) {
         // props.filerfun(responceCategory)
 
     return (
-        <div className="filterbar">
+        <div className="filterbar row-span-5 row-start-1">
             <MainFilterComponent drag={drag} data={data} dragFunction={dragFunction} getCheckBoxValue={getCheckBoxValue}/>
             
         </div>

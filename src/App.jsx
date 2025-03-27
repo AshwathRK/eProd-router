@@ -6,6 +6,8 @@ import ProductList from './Components/ProdectList'
 import Axios from 'axios';
 import { createContext } from 'react'
 import AddToCardModel from './Components/AddToCardModel';
+import { Router, Routes, Route } from 'react-router';
+import AddToCardPages from './Pages/AddToCardPages';
 
 
 export const AppContext = createContext()
@@ -22,13 +24,6 @@ function App() {
 
     const [countID, setCountID] = useState({})
 
-
-    //CallBack for the model popup open and close
-    const addModelPopup = () => {
-        setaddToCardPopup((prevDrag) => (prevDrag === "modelPopup-down" ? "modelPopup-open" : "modelPopup-down"));
-    }
-
-
     //To fetching the all data from the API
     useEffect(() => {
         Axios.get('https://fakestoreapi.com/products').then((response) => {
@@ -44,42 +39,40 @@ function App() {
         useEffect(() => {
             setSelectedProdects(prodects);
             setCountID(
-                prodects.map((item) => ({ id: item.id, selectedCount: count }))
+                prodects.map((item) => ({ id: item.id, selectedCount: count, price: item.price}))
             );
         }, [prodects, count]);
     }
 
-
-    //Callback for the selected category
-
-    // const fetchTheSelectedCategory = (object)=>{
-    //     setFilteredData(
-    //         productDetails.filter((value) => 
-    //             object.some((filterValue) => value.name === filterValue.name)
-    //         )
-    //     );
-    // }
-
-    useEffect(()=>{
-        console.log(filteredData)
-
-    }, [])
+    //Remove items form selected prodect
+    const removeItem=(values)=>{
+        const newArray = selectedProdects.filter(item => item.id!==values.id);
+        const removeTheID = countID.filter(item=> item.id!==values.id)
+        setCountID(removeTheID);
+        setSelectedProdects(newArray);
+    }
 
     return (
         <>
-            <div>
-                <NavigationBar selectedProdectCount={(selectedProdects.length)} onClick={addModelPopup} />
-                <AppContext.Provider value={{ productDetails, setprodectDetails, filteredCategory, setFilteredCategory }}>
-                    <div className='filter-con w-full flex'>
-                        <Filters />
-                        {/* filerfun={fetchTheSelectedCategory} */}
-                        <div className="container">
-                            <ProductList selectedProdect={getSelectedProdect} />
-                        </div>
-                    </div>
-                </AppContext.Provider>
-                <AddToCardModel selectedProdectCount={countID} selectedProdect={selectedProdects} onClick={addModelPopup} className={addToCardPopup} />
-            </div>
+            <NavigationBar selectedProdectCount={(selectedProdects.length)}/>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <AppContext.Provider
+                                value={{ productDetails, setprodectDetails, filteredCategory, setFilteredCategory }}
+                            >
+                                <div className='filter-con w-full grid col-span-5 row-span-10 row-start-2 grid-rows-5 grid-cols-5'>
+                                    <Filters/>
+                                    <div className="container col-start-2 col-span-4 row-span-5">
+                                        <ProductList selectedProdect={getSelectedProdect} />
+                                    </div>
+                                </div>
+                            </AppContext.Provider>
+                        }
+                    />
+                    <Route path='/addToCart' element={<AddToCardPages removerProd={removeItem} selectedProdectCount={countID} selectedProdect={selectedProdects}/>}/>
+                </Routes>
         </>
     )
 }
